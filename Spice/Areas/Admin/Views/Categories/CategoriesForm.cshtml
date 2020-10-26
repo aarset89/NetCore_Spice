@@ -1,0 +1,43 @@
+﻿@model Spice.Models.Category
+@{
+    ViewData["Title"] = "CategoriesForm";
+}
+
+
+
+@using (Html.BeginForm("Save", "Categories"))
+{
+    @Html.ValidationSummary()
+    @*@Html.HiddenFor(m => m.Id)*@
+    <div class="container bg-light">
+        @*<h1>@Model.Title()[0]</h1>*@
+        <h2>category</h2>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="row form-group">
+            <div class="col-6">
+                <div class="form-group">
+                    @Html.HiddenFor(m => m.Id)
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-success form-control">save</button>
+                </div>
+
+                @*<button class="btn btn-success form-control" type="submit">@Model.Title()[1]</button>*@
+
+            </div>
+            <div class="col-6 text-right">
+                @Html.ActionLink("Back to list", "index", "Categories", null, new { @class = "btn btn-info form-control" })
+            </div>
+        </div>
+
+    </div>
+
+    
+
+}
+
